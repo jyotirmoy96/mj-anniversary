@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>For MJ ❤️</title>
+
+<!-- Romantic Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+
+<style>
+body{
+  margin:0;
+  overflow:hidden;
+  font-family:'Georgia', serif;
+  color:white;
+  text-align:center;
+}
+
+/* BACKGROUND LAYERS */
+#bg1, #bg2{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background-size:cover;
+  background-position:center;
+  transition:opacity 2.5s ease;
+  z-index:-3;
+}
+
+#bg1{
+  background-image:url("background.jpg");
+  opacity:1;
+}
+
+#bg2{
+  background-image:url("background2.jpg");
+  opacity:0;
+}
+
+.overlay{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.55);
+  z-index:-2;
+}
+
+#intro, #celebration, #slideshow, #finalMessage{
+  position:absolute;
+  width:100%;
+  height:100%;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+}
+
+#celebration, #slideshow, #finalMessage{
+  display:none;
+}
+
+/* TEXT */
+.title{font-size:34px;color:#ffb3d9;}
+.dear{font-size:22px;margin-top:10px;}
+.name{font-size:75px;animation:glow 2s infinite alternate;}
+.question{font-size:24px;margin:15px 0;}
+
+@keyframes glow{
+  from{text-shadow:0 0 15px #ff4e8b;}
+  to{text-shadow:0 0 50px #ff0055;}
+}
+
+#countdown{font-size:40px;color:#ff4e8b;margin:20px 0;}
+
+.button{
+  padding:15px 35px;
+  font-size:20px;
+  background:#ff0055;
+  border:none;
+  border-radius:30px;
+  color:white;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+.button:hover{
+  transform:scale(1.1);
+  box-shadow:0 0 20px #ff0055;
+}
+
+/* POPUP */
+#popup{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.85);
+  display:none;
+  justify-content:center;
+  align-items:center;
+  z-index:1000;
+}
+
+.popupBox{
+  background:#111;
+  padding:40px;
+  border-radius:15px;
+  box-shadow:0 0 30px #ff0055;
+}
+
+/* CONFETTI */
+.confetti{
+  position:absolute;
+  width:8px;
+  height:8px;
+  animation:fall 3s linear forwards;
+}
+
+@keyframes fall{
+  from{transform:translateY(-10vh) rotate(0deg);}
+  to{transform:translateY(110vh) rotate(720deg);}
+}
+
+/* SLIDES */
+.slide{
+  max-width:90%;
+  max-height:90%;
+  border-radius:20px;
+  box-shadow:0 0 40px #ff0055;
+  opacity:0;
+  transition:opacity 1.5s ease;
+}
+
+.fadeIn{opacity:1;}
+
+.heart{
+  position:absolute;
+  font-size:22px;
+  animation:float 8s linear infinite;
+}
+
+@keyframes float{
+  from{transform:translateY(100vh);}
+  to{transform:translateY(-10vh);}
+}
+
+/* FINAL MESSAGE STYLING */
+#messageBox{
+  max-width:85%;
+  text-align:center;
+  font-size:36px;
+  line-height:1.8;
+  font-family:'Playfair Display', serif;
+  transition:opacity 1.5s ease;
+}
+
+.fadeText{
+  opacity:0;
+  animation:fadeInText 2s forwards;
+}
+
+@keyframes fadeInText{
+  to{opacity:1;}
+}
+
+.fadeOut{
+  opacity:0;
+  transition:opacity 1.5s ease;
+}
+
+.bigFinal{
+  font-size:75px;
+  margin-top:40px;
+  font-family:'Dancing Script', cursive;
+  animation:glow 2s infinite alternate, zoomIn 4s ease forwards;
+}
+
+@keyframes zoomIn{
+  from{transform:scale(1);}
+  to{transform:scale(1.08);}
+}
+
+/* ✨ Infinity Halo Effect */
+.infinity{
+  position:relative;
+  color:gold;
+  display:inline-block;
+  animation:infinityGlow 2s ease-in-out infinite alternate;
+}
+
+.infinity::after{
+  content:"∞";
+  position:absolute;
+  left:0;
+  top:0;
+  color:gold;
+  filter:blur(14px);
+  opacity:0.7;
+  z-index:-1;
+  animation:haloPulse 3s ease-in-out infinite alternate;
+}
+
+@keyframes infinityGlow{
+  from{
+    text-shadow:0 0 10px gold, 0 0 25px gold;
+  }
+  to{
+    text-shadow:0 0 30px gold, 0 0 60px gold;
+  }
+}
+
+@keyframes haloPulse{
+  from{
+    transform:scale(1);
+    opacity:0.5;
+  }
+  to{
+    transform:scale(1.5);
+    opacity:0.9;
+  }
+}
+
+/* ✨ Golden Spark Particles */
+.spark{
+  position:absolute;
+  width:6px;
+  height:6px;
+  background:gold;
+  border-radius:50%;
+  pointer-events:none;
+  animation:sparkFloat 3s ease-out forwards;
+}
+
+@keyframes sparkFloat{
+  0%{
+    opacity:1;
+    transform:translateY(0) scale(1);
+  }
+  100%{
+    opacity:0;
+    transform:translateY(-140px) scale(0.5);
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div id="bg1"></div>
+<div id="bg2"></div>
+<div class="overlay"></div>
+
+<!-- INTRO -->
+<div id="intro">
+  <div class="title">Three Years. One Forever.</div>
+  <div class="dear">Dear</div>
+  <div class="name">MJ ❤️</div>
+  <div class="question">Are you excited to step into Fourth?</div>
+  <div id="countdown"></div>
+  <button class="button" onclick="handleClick()">Enter Our Story</button>
+</div>
+
+<!-- CELEBRATION -->
+<div id="celebration">
+  <h1>It's Our Day MJ ❤️</h1>
+  <button class="button" onclick="startSlideshow()">Begin Our Forever</button>
+</div>
+
+<!-- SLIDESHOW -->
+<div id="slideshow"></div>
+
+<!-- FINAL MESSAGE -->
+<div id="finalMessage">
+  <div id="messageBox"></div>
+</div>
+
+<!-- POPUP -->
+<div id="popup">
+  <div class="popupBox">
+    <h2>Wait for the surprise sweetheart! ❤️</h2>
+    <div style="margin-top:20px;">
+      <button class="button" onclick="closePopup()">Okay ❤️</button>
+      <button class="button" style="background:#333;margin-left:15px;" onclick="goToFunny()">No 😤</button>
+    </div>
+  </div>
+</div>
+
+<audio id="bgMusic" loop>
+  <source src="iraaday.mp3" type="audio/mp3">
+</audio>
+
+<audio id="newMusic" loop>
+  <source src="enchanted.mp3" type="audio/mp3">
+</audio>
+
+<script>
+
+/* TIMER */
+//const targetDate = new Date().getTime() + 20000;
+let targetDate;
+
+if(localStorage.getItem("anniversaryTarget")){
+  targetDate = parseInt(localStorage.getItem("anniversaryTarget"));
+} else {
+  //targetDate = new Date().getTime() + 20000; // 20 sec test
+  targetDate = new Date("2026-02-19T00:00:00+05:30").getTime();
+  localStorage.setItem("anniversaryTarget", targetDate);
+}
+
+
+let unlocked=false;
+const countdown=document.getElementById("countdown");
+
+const interval=setInterval(()=>{
+  const now=new Date().getTime();
+  const diff=targetDate-now;
+
+  if(diff<=0){
+    clearInterval(interval);
+    triggerMidnight();
+  } else{
+    //countdown.innerHTML=Math.floor(diff/1000)+" seconds";
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+    const minutes = Math.floor((diff / (1000 * 60)) % 60);
+    const seconds = Math.floor((diff / 1000) % 60);
+
+    countdown.innerHTML =
+      days + "d " +
+      hours + "h " +
+      minutes + "m " +
+      seconds + "s";
+
+  }
+},1000);
+
+function triggerMidnight(){
+  localStorage.removeItem("anniversaryTarget");
+  unlocked=true;
+  document.getElementById("bg1").style.opacity="0";
+  document.getElementById("bg2").style.opacity="1";
+  fadeMusic();
+  document.getElementById("intro").style.display="none";
+  document.getElementById("celebration").style.display="flex";
+  launchConfetti();
+}
+
+function fadeMusic(){
+
+const oldMusic=document.getElementById("bgMusic");
+const newMusic=document.getElementById("newMusic");
+
+let vol=oldMusic.volume;
+
+const fadeOut=setInterval(()=>{
+  if(vol>0.05){
+    vol-=0.05;
+    oldMusic.volume=vol;
+  }else{
+    clearInterval(fadeOut);
+
+    oldMusic.pause();
+    oldMusic.currentTime = 0;   // ensure it fully stops
+
+    newMusic.currentTime = 0;
+    newMusic.volume = 0;
+    
+    const playPromise = newMusic.play();
+
+    if(playPromise !== undefined){
+      playPromise.then(()=>{
+        fadeIn(newMusic);
+      }).catch(()=>{
+        console.log("Autoplay blocked — waiting for user interaction.");
+      });
+    }
+  }
+},150);
+}
+
+
+function fadeIn(music){
+  let vol=0;
+  const fadeIn=setInterval(()=>{
+    if(vol<0.6){
+      vol+=0.05;
+      music.volume=vol;
+    }else{
+      clearInterval(fadeIn);
+    }
+  },150);
+}
+
+function handleClick(){
+  if(!unlocked){
+    document.getElementById("popup").style.display="flex";
+  }
+}
+
+function closePopup(){
+  document.getElementById("popup").style.display="none";
+}
+
+function goToFunny(){
+  let count=localStorage.getItem("noClickCount");
+  if(!count){count=0;}else{count=parseInt(count);}
+  count++;
+  localStorage.setItem("noClickCount",count);
+  window.location.href="funny.html";
+}
+
+function launchConfetti(){
+  for(let i=0;i<120;i++){
+    const conf=document.createElement("div");
+    conf.className="confetti";
+    conf.style.left=Math.random()*100+"vw";
+    conf.style.backgroundColor=
+      ["#ff0055","#ffcc00","#00ffcc","#ffffff"][Math.floor(Math.random()*4)];
+    conf.style.animationDuration=(Math.random()*2+2)+"s";
+    document.body.appendChild(conf);
+    setTimeout(()=>conf.remove(),4000);
+  }
+}
+
+function launchSparks(){
+  for(let i=0;i<40;i++){
+    const spark=document.createElement("div");
+    spark.className="spark";
+    spark.style.left=Math.random()*100+"vw";
+    spark.style.top=(55+Math.random()*20)+"vh";
+    spark.style.animationDuration=(2+Math.random()*2)+"s";
+    document.body.appendChild(spark);
+    setTimeout(()=>spark.remove(),4000);
+  }
+}
+
+
+/* SLIDESHOW */
+const media=[
+  "video01.mp4","video02.mp4","video03.mp4","video04.mp4","photo001.jpg","photo002.jpg","photo003.jpg","photo004.jpg","photo005.jpg","photo006.jpg","photo007.jpg","photo008.jpg","photo009.jpg","photo010.jpg",
+  "video05.mp4","photo011.jpg","photo012.jpg","photo013.jpg","photo014.jpg","video06.mp4","photo015.jpg",
+  "video07.mp4","photo016.jpg","video08.mp4","photo017.jpg","video09.mp4","photo018.jpg","video10.mp4","photo019.jpg",
+  "photo020.jpg","photo021.jpg","photo022.jpg","photo023.jpg","photo024.jpg","photo025.jpg","photo026.jpg",
+  "photo027.jpg","video11.mp4"
+
+];
+
+let current=0;
+
+function startSlideshow(){
+  document.getElementById("celebration").style.display="none";
+  document.getElementById("slideshow").style.display="flex";
+  showSlide();
+}
+
+function showSlide(){
+  const slideshow=document.getElementById("slideshow");
+  slideshow.innerHTML="";
+  const file=media[current];
+  const ext=file.split('.').pop().toLowerCase();
+  let element;
+
+  if(ext==="mp4"){
+    element=document.createElement("video");
+    element.src=file;
+    element.autoplay=true;
+    element.onended=nextSlide;
+  }else{
+    element=document.createElement("img");
+    element.src=file;
+    setTimeout(nextSlide,5000);
+  }
+
+  element.className="slide";
+  slideshow.appendChild(element);
+  setTimeout(()=>element.classList.add("fadeIn"),100);
+}
+
+function nextSlide(){
+  current++;
+  if(current<media.length){
+    showSlide();
+  }else{
+    endShow();
+  }
+}
+
+/* FINAL SEQUENCE */
+function endShow(){
+  document.getElementById("slideshow").style.display="none";
+  document.getElementById("finalMessage").style.display="flex";
+  startFinalSequence();
+}
+
+function typeWriter(text, element, speed, callback){
+  let i=0;
+  element.innerHTML="";
+  function typing(){
+    if(i<text.length){
+      element.innerHTML+=text.charAt(i);
+      i++;
+      setTimeout(typing,speed);
+    }else if(callback){
+      setTimeout(callback,1500);
+    }
+  }
+  typing();
+}
+
+function fadeSection(callback){
+  const box=document.getElementById("messageBox");
+  box.classList.add("fadeOut");
+  setTimeout(()=>{
+    box.innerHTML="";
+    box.classList.remove("fadeOut");
+    callback();
+  },1500);
+}
+
+function startFinalSequence(){
+  const box=document.getElementById("messageBox");
+
+  typeWriter("Dear MJ…",box,200,function(){
+    typeWriter("\nThree years ago, I found my home in you.",box,160,function(){
+      typeWriter("\nAnd today, I choose you again.",box,160,function(){
+
+        const glowLine=document.createElement("div");
+        glowLine.className="fadeText";
+        glowLine.style.marginTop="25px";
+        glowLine.style.fontSize="26px";
+        glowLine.innerHTML="Forever begins again tonight.";
+        box.appendChild(glowLine);
+
+        setTimeout(()=>fadeSection(partTwo),8000);
+      });
+    });
+  });
+
+  function partTwo(){
+    const lines=[
+      "From strangers…",
+      "To best friends…",
+      "To something eternal."
+    ];
+    let delay=0;
+    lines.forEach((line)=>{
+      const div=document.createElement("div");
+      div.innerHTML=line;
+      div.className="fadeText";
+      div.style.marginTop="20px";
+      div.style.animationDelay=delay+"s";
+      box.appendChild(div);
+      delay+=3;
+    });
+    setTimeout(()=>fadeSection(partThree),12000);
+  }
+
+  function partThree(){
+    typeWriter("You annoy me.",box,200,function(){
+      typeWriter("\nYou tease me.",box,200,function(){
+        typeWriter("\nYou fight with me.",box,200,function(){
+          typeWriter("\n\nAnd I still choose you.",box,200,function(){
+            typeWriter("\nEvery. Single. Time.",box,200,function(){
+              setTimeout(finalBig,6000);
+            });
+          });
+        });
+      });
+    });
+  }
+
+  function finalBig(){
+    const music=document.getElementById("newMusic");
+    let target=0.25;
+    let currentVol=music.volume;
+
+    const dip=setInterval(()=>{
+      if(currentVol>target){
+        currentVol-=0.02;
+        music.volume=currentVol;
+      }else{
+        clearInterval(dip);
+      }
+    },100);
+
+    fadeSection(()=>{
+      const big=document.createElement("div");
+      big.className="bigFinal";
+      //big.innerHTML="Dear MJ,<br>I love you ∞";
+      big.innerHTML='Dear MJ,<br>I love you <span class="infinity">∞</span>';
+
+      box.appendChild(big);
+
+      launchSparks();  // ✨ added line
+    });
+  }
+}
+
+/* HEARTS */
+function createHeart(){
+  const heart=document.createElement("div");
+  heart.className="heart";
+  heart.innerHTML="❤️";
+  heart.style.left=Math.random()*100+"vw";
+  heart.style.animationDuration=(Math.random()*5+5)+"s";
+  document.body.appendChild(heart);
+  setTimeout(()=>heart.remove(),8000);
+}
+setInterval(createHeart,400);
+
+let started=false;
+document.addEventListener("click",function(){
+  if(!started){
+    document.getElementById("bgMusic").volume=0.6;
+    document.getElementById("bgMusic").play();
+    started=true;
+  }
+});
+</script>
+
+</body>
+</html>

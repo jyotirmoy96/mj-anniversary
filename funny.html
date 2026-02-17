@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Oh Really MJ? 😤</title>
+
+<style>
+body{
+  margin:0;
+  background:black;
+  color:white;
+  font-family:'Georgia', serif;
+  text-align:center;
+}
+
+.container{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  width:90%;
+}
+
+.slide{
+  max-width:80%;
+  max-height:60vh;
+  margin-top:20px;
+  border-radius:15px;
+  box-shadow:0 0 30px #ff0055;
+}
+
+.button{
+  margin-top:30px;
+  padding:12px 30px;
+  font-size:18px;
+  background:#ff0055;
+  border:none;
+  border-radius:25px;
+  color:white;
+  cursor:pointer;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <h1>Oh really MJ? 😤</h1>
+  <p>You chose NO? Now face my dramatic reaction 😌</p>
+
+  <div id="slideshow"></div>
+
+  <button class="button" onclick="goBack()">Fine… Take Me Back ❤️</button>
+</div>
+
+<script>
+
+const media=[
+  //"funny1.jpg",
+  //"funny2.jpg",
+  //"funny3.jpg",
+  //"funny4.jpg",
+  //"funny5.jpg",
+  //"funny6.jpg",
+  //"funny7.jpg",
+  "funny8.mp4",
+  "funny9.mp4",
+  "funny10.mp4",
+  "funny11.mp4",
+  "funny12.mp4",
+  "funny13.mp4",
+  "funny14.mp4"
+  //"funny8.jpg",
+  //"funny9.jpg",
+  //"funny10.jpg"
+];
+
+let count = localStorage.getItem("noClickCount");
+if(!count){ count = 1; }
+else{ count = parseInt(count); }
+
+let index = (count - 1) % media.length;
+
+const container=document.getElementById("slideshow");
+const file=media[index];
+const ext=file.split('.').pop().toLowerCase();
+let element;
+
+if(ext==="mp4"){
+  element=document.createElement("video");
+  element.src=file;
+  element.autoplay=true;
+  element.controls=true;
+}else{
+  element=document.createElement("img");
+  element.src=file;
+}
+
+element.className="slide";
+container.appendChild(element);
+
+function goBack(){
+  window.location.href="index.html";
+}
+
+</script>
+
+</body>
+</html>
